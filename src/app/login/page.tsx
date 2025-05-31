@@ -12,7 +12,7 @@ export default function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      await axios.post(
+      const res = await axios.post(
         `${backendUrl}/login`,
         { username : username, password: password }, // password will be added later
         {
@@ -22,6 +22,7 @@ export default function LoginPage() {
         }
       );
       setMessage('🎉 Login successful!');
+      window.location.href = res.data.redirect;
     } catch (err) {
       setMessage('❌ Login failed. Please check your credentials.');
     }
