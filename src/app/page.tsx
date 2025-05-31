@@ -1,58 +1,23 @@
 'use client';
-import { useState } from 'react';
-import axios from 'axios';
-import { Container, Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
+
+import { Container, Button, Card, Row, Col } from 'react-bootstrap';
 
 export default function Home() {
-  const [name1, setName] = useState('');
-  const [userId, setUserId] = useState('');
-  const [userData, setUserData] = useState(null);
-  const [message, setMessage] = useState('');
-
-  const backendUrl = 'http://localhost:5000';
-
-  const registerUser = async () => {
-  try {
-    const res1 = await axios.post(
-      `${backendUrl}/profile/register`,
-      { name: name1 },
-      {
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-      }
-    );
-    setMessage('Success! Your user id is ' + res1.data.user);
-  } catch (err) {
-    setMessage('Error during registration');
-  }
-};
-
-
-  const fetchProfile = async () => {
-    try {
-      const res = await axios.get(`${backendUrl}/profile/${userId}`);
-      setUserData(res.data.name);
-    } catch (err) {
-      setMessage('User not found.');
-    }
-  };
-
- return (
+  return (
     <div
       style={{
         background: '#f9f9fb',
         minHeight: '100vh',
-        padding: '2rem 2rem',
+        padding: '4rem 1rem',
         fontFamily: 'Segoe UI, Roboto, sans-serif',
       }}
     >
-      <Container style={{ maxWidth: '450px' }}>
+      <Container style={{ maxWidth: '900px' }}>
         <h1
           style={{
             fontFamily: `'Georgia', 'Times New Roman', serif`,
             fontWeight: 'bold',
-            fontSize: '2.8rem',
+            fontSize: '3rem',
             color: '#1a1a1a',
             textAlign: 'center',
           }}
@@ -60,68 +25,61 @@ export default function Home() {
           ModulusAI
         </h1>
 
+        <p className="text-center mt-3" style={{ fontSize: '1.2rem', color: '#555' }}>
+          🎓 Your Intelligent NUS Academic Planner – Built to Balance, Predict, and Optimize.
+        </p>
 
-        <Card className="mb-4 shadow-sm border-0" style={{ borderRadius: '16px' }}>
-          <Card.Body>
-            <h4 style={{ fontWeight: 500 }}>👤 Register</h4>
-            <Form.Group className="mt-3">
-              <Form.Label>Your Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="e.g., Arjun"
-                onChange={e => setName(e.target.value)}
-              />
-            </Form.Group>
-            <Button
-              variant="warning"
-              className="mt-4 w-100"
-              style={{ borderRadius: '12px', padding: '0.75rem' }}
-              onClick={registerUser}
-            >
-              Register
-            </Button>
-          </Card.Body>
-        </Card>
+        <Row className="mt-5 g-4">
+          <Col md={6}>
+            <Card className="shadow-sm border-0" style={{ borderRadius: '16px' }}>
+              <Card.Body>
+                <h5>📅 4-Year Planner</h5>
+                <p>
+                  Automatically generate a personalized module schedule based on your interests, major requirements, and internship plans.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
 
-        <Card className="mb-4 shadow-sm border-0" style={{ borderRadius: '16px' }}>
-          <Card.Body>
-            <h4 style={{ fontWeight: 500 }}>🔍 Fetch User Profile</h4>
-            <Form.Group className="mt-3">
-              <Form.Label>User ID</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="e.g., 1"
-                onChange={e => setUserId(e.target.value)}
-              />
-            </Form.Group>
-            <Button
-              variant="success"
-              className="mt-4 w-100"
-              style={{ borderRadius: '12px', padding: '0.75rem' }}
-              onClick={fetchProfile}
-            >
-              Fetch Profile
-            </Button>
+          <Col md={6}>
+            <Card className="shadow-sm border-0" style={{ borderRadius: '16px' }}>
+              <Card.Body>
+                <h5>🧠 Smart Chatbot Assistant</h5>
+                <p>
+                  Chat with ModulusAI to discover suitable modules, avoid clashes, and get study-friendly suggestions tailored to your goals.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
 
-            {userData && (
-              <div className="mt-4 bg-light p-3 rounded" style={{ fontSize: '1.05rem' }}>
-                <strong>Name:</strong> {userData}
-              </div>
-            )}
-          </Card.Body>
-        </Card>
+          <Col md={6}>
+            <Card className="shadow-sm border-0" style={{ borderRadius: '16px' }}>
+              <Card.Body>
+                <h5>📊 Sentiment-Based Reviews</h5>
+                <p>
+                  Make informed choices with community-driven feedback and sentiment analysis of past module reviews.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
 
-        {message && (
-          <Alert
-            variant={
-              message.startsWith('🎉') ? 'success' : message.startsWith('⚠️') ? 'warning' : 'danger'
-            }
-            className="text-center"
-            style={{ borderRadius: '12px', fontSize: '1rem' }}
-          >
-            {message}
-          </Alert>
-        )}
+          <Col md={6}>
+            <Card className="shadow-sm border-0" style={{ borderRadius: '16px' }}>
+              <Card.Body>
+                <h5>🎯 Bidding Strategy Helper</h5>
+                <p>
+                  Access historical bidding data + your interests to optimize module ranking and CAP-safe planning.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+        <div className="text-center mt-5">
+          <Button href="/register" variant="dark" style={{ padding: '0.8rem 2rem', borderRadius: '12px' }}>
+            Get Started →
+          </Button>
+        </div>
       </Container>
     </div>
   );
