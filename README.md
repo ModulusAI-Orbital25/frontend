@@ -15,3 +15,13 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Docker Compose
+
+Alternatively, the server can be run using Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+The development server supports live reloading.
