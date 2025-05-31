@@ -24,7 +24,6 @@ export default function Home() {
     );
     setMessage('Success! Your user id is ' + res1.data.user);
   } catch (err) {
-    console.error(err); 
     setMessage('Error during registration');
   }
 };
