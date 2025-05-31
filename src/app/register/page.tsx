@@ -1,45 +1,39 @@
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
-import { Container, Form, Button, Card, Row, Col, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Card, Alert } from 'react-bootstrap';
 
 export default function Home() {
   const [name1, setName] = useState('');
-  const [userId, setUserId] = useState('');
-  const [userData, setUserData] = useState(null);
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
   const backendUrl = 'http://localhost:5000';
 
   const registerUser = async () => {
-  try {
-    const res1 = await axios.post(
-      `${backendUrl}/profile/register`,
-      { name: name1 },
-      {
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-      }
-    );
-    setMessage('Success! Your user id is ' + res1.data.user);
-  } catch (err) {
-    console.error(err); 
-    setMessage('Error during registration');
-  }
-};
-
-
-  const fetchProfile = async () => {
     try {
-      const res = await axios.get(`${backendUrl}/profile/${userId}`);
-      setUserData(res.data.name);
+      const res1 = await axios.post(
+        `${backendUrl}/profile/register`,
+        {
+          username: name1,
+          password: password, 
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true, 
+        }
+      );
+      setMessage('🎉 Success!');
+      window.location.href = res1.data.redirect;
     } catch (err) {
-      setMessage('User not found.');
+      console.error(err);
+      setMessage('❌ Error during registration');
     }
   };
 
- return (
+  return (
     <div
       style={{
         background: '#f9f9fb',
@@ -61,10 +55,10 @@ export default function Home() {
           ModulusAI
         </h1>
 
-
         <Card className="mb-4 shadow-sm border-0" style={{ borderRadius: '16px' }}>
           <Card.Body>
             <h4 style={{ fontWeight: 500 }}>👤 Register</h4>
+
             <Form.Group className="mt-3">
               <Form.Label>Your Name</Form.Label>
               <Form.Control
@@ -73,6 +67,16 @@ export default function Home() {
                 onChange={e => setName(e.target.value)}
               />
             </Form.Group>
+
+            <Form.Group className="mt-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Create a password"
+                onChange={e => setPassword(e.target.value)}
+              />
+            </Form.Group>
+
             <Button
               variant="warning"
               className="mt-4 w-100"
@@ -81,34 +85,6 @@ export default function Home() {
             >
               Register
             </Button>
-          </Card.Body>
-        </Card>
-
-        <Card className="mb-4 shadow-sm border-0" style={{ borderRadius: '16px' }}>
-          <Card.Body>
-            <h4 style={{ fontWeight: 500 }}>🔍 Fetch User Profile</h4>
-            <Form.Group className="mt-3">
-              <Form.Label>User ID</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="e.g., 1"
-                onChange={e => setUserId(e.target.value)}
-              />
-            </Form.Group>
-            <Button
-              variant="success"
-              className="mt-4 w-100"
-              style={{ borderRadius: '12px', padding: '0.75rem' }}
-              onClick={fetchProfile}
-            >
-              Fetch Profile
-            </Button>
-
-            {userData && (
-              <div className="mt-4 bg-light p-3 rounded" style={{ fontSize: '1.05rem' }}>
-                <strong>Name:</strong> {userData}
-              </div>
-            )}
           </Card.Body>
         </Card>
 
