@@ -26,7 +26,6 @@ export default function Home() {
         }
       );
       setMessage('🎉 Success!');
-      window.location.href = res1.data.redirect;
     } catch (err) {
       console.error(err);
       setMessage('❌ Error during registration');
