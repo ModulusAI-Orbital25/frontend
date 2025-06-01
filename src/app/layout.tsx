@@ -1,34 +1,54 @@
 'use client';
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Link from 'next/link';
-
+import axios from 'axios';
 
 function BasicExample() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/me', { withCredentials: true })
+      .then(res => {
+        if (res.data && res.data.logged_in) {
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(() => setIsLoggedIn(false));
+  }, []);
+
   return (
     <Navbar bg="primary" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as = {Link} href="/">ModulusAI</Navbar.Brand>
+        <Navbar.Brand as={Link} href="/">ModulusAI</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
+            {!isLoggedIn && (
+              <>
+                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/register">Register</Nav.Link>
+              </>
+            )}
+            {isLoggedIn && (
+              <>
             <NavDropdown title="Features" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">My TimeTable</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Schedule</NavDropdown.Item>
+              <NavDropdown.Item href="/timetable">My Timetable</NavDropdown.Item>
+              <NavDropdown.Item href="/schedule">Schedule</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Chat
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
             </NavDropdown>
+            </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
+
 
 export default function RootLayout({
   children,

@@ -19,10 +19,10 @@ export default function LoginPage() {
           headers: {
             'Content-Type': 'application/json',
           },
+          withCredentials: true
         }
       );
       setMessage('🎉 Login successful!');
-      window.location.href = res.data.redirect;
     } catch (err) {
       setMessage('❌ Login failed. Please check your credentials.');
     }
