@@ -36,7 +36,7 @@ function BasicExample() {
               <>
             <NavDropdown title="Features" id="basic-nav-dropdown">
               <NavDropdown.Item href="/timetable">My Timetable</NavDropdown.Item>
-              <NavDropdown.Item href="/schedule">Schedule</NavDropdown.Item>
+              <NavDropdown.Item href="/chat">Chatbot</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
             </NavDropdown>
