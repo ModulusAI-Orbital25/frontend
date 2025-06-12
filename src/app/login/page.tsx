@@ -14,7 +14,7 @@ export default function LoginPage() {
     try {
       const res = await axios.post(
         `${backendUrl}/login`,
-        { username : username, password: password }, // password will be added later
+        { username : username, password: password }, 
         {
           headers: {
             'Content-Type': 'application/json',
