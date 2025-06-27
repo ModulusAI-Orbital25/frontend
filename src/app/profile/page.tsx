@@ -9,7 +9,6 @@ export default function ProfilePage() {
     secondaryMajor: '',
     minor1: '',
     minor2: '',
-    completedModules: '',
     currentSemester: '',
     internshipSem: '',
   });
@@ -111,17 +110,6 @@ export default function ProfilePage() {
                   </Form.Group>
                 </Col>
               </Row>
-
-              <Form.Group className="mb-3">
-                <Form.Label>Completed Modules</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={2}
-                  name="completedModules"
-                  placeholder="e.g., CS1010, MA1521, GER1000"
-                  onChange={handleChange}
-                />
-              </Form.Group>
 
               <Row>
                 <Col>
