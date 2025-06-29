@@ -34,11 +34,12 @@ function BasicExample() {
             )}
             {isLoggedIn && (
               <>
+            <Nav.Link href="/profile">My Profile</Nav.Link>
+            <Nav.Link href="/timetable">My Timetable</Nav.Link>
             <NavDropdown title="Features" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/timetable">My Timetable</NavDropdown.Item>
               <NavDropdown.Item href="/chat">Chatbot</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/sentiment">Sentiment Analysis</NavDropdown.Item>
+              <NavDropdown.Item href="/optimizer">Semester Scheduler</NavDropdown.Item>
             </NavDropdown>
             </>
             )}
