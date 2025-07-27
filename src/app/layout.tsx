@@ -36,6 +36,7 @@ function BasicExample() {
               <>
             <Nav.Link href="/profile">My Profile</Nav.Link>
             <Nav.Link href="/timetable">My Timetable</Nav.Link>
+            <Nav.Link href="/degree">Degree Progress</Nav.Link>
             <NavDropdown title="Features" id="basic-nav-dropdown">
               <NavDropdown.Item href="/chat">Chatbot</NavDropdown.Item>
               <NavDropdown.Item href="/sentiment">Sentiment Analysis</NavDropdown.Item>
