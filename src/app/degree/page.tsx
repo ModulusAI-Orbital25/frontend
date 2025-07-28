@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstrap';
 
 // Configure axios to point at your backend and include credentials
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = `${process.env.NEXT_PUBLIC_API_URL}`;
 axios.defaults.withCredentials = true;
 
 interface ClassifyResponse {

@@ -23,7 +23,7 @@ export default function ModulePlannerPage() {
   useEffect(() => {
     const fetchValidModules = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/modules/alll', { withCredentials: true });
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/modules/alll`, { withCredentials: true });
         setValidModules(res.data.modules);
       } catch (err) {
         console.error('Failed to load valid modules', err);
@@ -32,7 +32,7 @@ export default function ModulePlannerPage() {
 
     const fetchPlan = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/modules/loadPlan', { withCredentials: true });
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/modules/loadPlan`, { withCredentials: true });
         if (res.data.semesters && res.data.semesters.length > 0) {
           const loaded = res.data.semesters.map((sem: any, i: number) => ({
             semester: i + 1,
@@ -75,7 +75,7 @@ export default function ModulePlannerPage() {
   const handleSave = async () => {
     try {
       await axios.post(
-        'http://localhost:5000/modules/savePlan',
+        `${process.env.NEXT_PUBLIC_API_URL}/modules/savePlan`,
         { semesters },
         { withCredentials: true, headers: { 'Content-Type': 'application/json' } }
       );

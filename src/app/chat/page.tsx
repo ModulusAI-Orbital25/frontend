@@ -11,7 +11,7 @@ interface Message {
   text: string;
 }
 
-const backendUrl = 'http://localhost:5000';
+const backendUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);

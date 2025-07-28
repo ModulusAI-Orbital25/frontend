@@ -10,7 +10,7 @@ function BasicExample() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/me', { withCredentials: true })
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/me`, { withCredentials: true })
       .then(res => {
         if (res.data && res.data.logged_in) {
           setIsLoggedIn(true);

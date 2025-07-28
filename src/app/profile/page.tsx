@@ -14,7 +14,7 @@ export default function ProfilePage() {
   });
   const [message, setMessage] = useState('');
 
-  const backendUrl = 'http://localhost:5000';
+  const backendUrl = `${process.env.NEXT_PUBLIC_API_URL}`;
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
