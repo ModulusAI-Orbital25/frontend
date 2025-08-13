@@ -26,7 +26,7 @@ const SentimentPage = () => {
   const analyzeModules = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/sentiment/bert", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sentiment/bert`, {
         modules: modules.filter((mod) => mod.trim() !== ""),
       });
       setResults(res.data);

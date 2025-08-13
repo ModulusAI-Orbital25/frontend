@@ -107,7 +107,7 @@ const Timetable = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("http://localhost:5000/modules/optimizer", {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/modules/optimizer`, {
         withCredentials: true
       });
         const blockData = toBlocks(res.data);
